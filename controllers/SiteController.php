@@ -232,8 +232,14 @@ class SiteController extends Controller
 //    Посты
     public function actionPosts()
     {
-        $posts = Post::find()->all();
-        return $this->render('posts', compact('posts'));
+        $data = Post::getAll();
+
+        $category = Category::getAll();
+
+        return $this->render('posts',[
+            'articles' => $data['articles'],
+            'categories' => $category
+        ]);
     }
 
 }

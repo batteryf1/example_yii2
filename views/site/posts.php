@@ -1,36 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Статья</title>
-</head>
-<body>
+<?php
+
+/* @var $this yii\web\posts */
+
+$this->title = 'Статьи';
+
+use yii\helpers\Url;
+
+?>
+
 
 <style>
-    .col-lg-4{
+    .col-lg-4 {
         border: 1px solid;
     }
 </style>
 
-	<div class="container">
-		<div class="row">
+<?php foreach ($articles as $article) : ?>
+    <div class="row">
+        <div class="col-lg-12">
+            <h2><a href="<?= Url::toRoute(['view', 'id' => $article->id]) ?>"><?= $article->title; ?></a></h2>
 
-            <div class="col-lg-4">Оглавление</div>
-            <div class="col-lg-4">Контент поста</div>
-            <div class="col-lg-4">Категория</div>
-		</div>
-        <div class="row">
-            <div class="col-lg-4"><?= $article->title ?></div>
-            <div class="col-lg-4"><?= $article->content ?></div>
-            <div class="col-lg-4"><?= $article->category->title ?></div>
+            <h2>
+                <a href="<?= Url::toRoute(['category', 'id' => $article->category->id]) ?>"><?= $article->category->title; ?></a>
+            </h2>
 
-            <div class="row">
-                <div class="col-lg-3"><?= $post->title ?></div>
-                <a class="col-lg-3" href="<?= Url::toRoute(['category', 'id' => $post->id]) ?>">Перейти в категорию</a>
-                <div class="col-lg-3"><?= $post->description ?></div>
-                <div class="col-lg-3"><?= $post->keyword ?></div>
-            </div>
+            <p><?= $article->description; ?></p>
         </div>
-	</div>
-</body>
-</html>
+    </div>
+<?php endforeach; ?>
+
+
