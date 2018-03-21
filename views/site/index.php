@@ -54,26 +54,6 @@ use yii\widgets\LinkPager;
             </div>
         </div>
 
-<!--        --><?php //foreach ($articles as $article) :?>
-<!--            <div class="row">-->
-<!--                <div class="col-lg-4">-->
-<!--                    <h2><a href="--><?//= Url::toRoute(['site/view', 'id' => $article->id]) ?><!--">--><?//= $article->title;  ?><!--</a></h2>-->
-<!---->
-<!--                    <h2><a href="--><?//= Url::toRoute(['site/category', 'id' => $article->category->id]) ?><!--">--><?//= $article->category->title;  ?><!--</a></h2>-->
-<!---->
-<!--                    <p>--><?//= $article->description;  ?><!--</p>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        --><?php //endforeach; ?>
-<!---->
-<!---->
-<!--        --><?php
-//        // display pagination
-//        echo LinkPager::widget([
-//            'pagination' => $pagination,
-//        ]);
-//        ?>
-
 
     </div>
 </div>
