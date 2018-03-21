@@ -178,37 +178,58 @@ class SiteController extends Controller
            ]);
     }
 
-    //Страница общих
+    //Страница общих категорий
+//    public function actionCategorys(){
+//
+//        //build a DB query to get all articles with status = 1
+//
+//        $query = Category::find();
+//
+//        //get the total number of articles(but do not fetch the article data yet)
+//
+//        $count = $query->count();
+//
+//        //create a pagination
+//
+//        $pagination = new Pagination(['totalCount' => $count, 'pageSize' => 2]);
+//
+//        //limit the query
+//
+//        $articles = $query->offset($pagination->offset)
+//            ->limit($pagination->limit)
+//            ->all();
+//
+//        $data['articles'] = $articles;
+//        $data['pagination'] = $pagination;
+//
+//        $categorys = Category::find()->All();
+//
+//
+//        return $this->render('categorys',[
+//            'articles' => $data['articles'],
+//            'pagination' => $data['pagination'],
+//            'categorys' => $categorys
+//        ]);
+//    }
+
+    //Категории
     public function actionCategorys(){
 
-        //build a DB query to get all articles with status = 1
-
         $query = Category::find();
-
-        //get the total number of articles(but do not fetch the article data yet)
-
-        $count = $query->count();
-
-        //create a pagination
-
-        $pagination = new Pagination(['totalCount' => $count, 'pageSize' => 2]);
-
-        //limit the query
-
-        $articles = $query->offset($pagination->offset)
-            ->limit($pagination->limit)
+        $pages = new Pagination(['totalCount' => $query->count(), 'pageSize' => 1]);
+        $posts = $query->offset($pages->offset)
+            ->limit($pages->limit)
             ->all();
-
-        $data['articles'] = $articles;
-        $data['pagination'] = $pagination;
-
-        $categorys = Category::find()->All();
+        return $this->render('categorys', compact('posts', 'pages'));
 
 
-        return $this->render('categorys',[
-            'articles' => $data['articles'],
-            'pagination' => $data['pagination'],
-            'categorys' => $categorys
-        ]);
+
+
+//        return $this->render('categorys',[
+//            'articles' => $data['articles'],
+//            'pagination' => $data['pagination'],
+//            'categorys' => $categorys
+//        ]);
     }
+
 }

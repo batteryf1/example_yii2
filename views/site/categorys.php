@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <?php foreach ($categorys as $category):?>
-        <title><?= $category->title ?></title>
+    <?php foreach ($posts as $post):?>
+        <title><?= $post->title ?></title>
     <?php endforeach; ?>
 
 </head>
@@ -29,14 +29,15 @@ use yii\widgets\LinkPager;
         <div class="col-lg-3">Ключевые слова</div>
     </div>
 
-    <?php foreach ($categorys as $category):?>
+    <?php foreach ($posts as $post):?>
         <div class="row">
-            <div class="col-lg-3"><?= $category->title ?></div>
-            <a class="col-lg-3" href="<?= Url::toRoute(['site/category', 'id' => $category->id]) ?>">Перейти в категорию</a>
-            <div class="col-lg-3"><?= $category->description ?></div>
-            <div class="col-lg-3"><?= $category->keyword ?></div>
+            <div class="col-lg-3"><?= $post->title ?></div>
+            <a class="col-lg-3" href="<?= Url::toRoute(['category', 'id' => $post->id]) ?>">Перейти в категорию</a>
+            <div class="col-lg-3"><?= $post->description ?></div>
+            <div class="col-lg-3"><?= $post->keyword ?></div>
         </div>
     <?php endforeach; ?>
+
 </div>
 
 <?php
@@ -45,5 +46,9 @@ use yii\widgets\LinkPager;
 //    'pagination' => $pagination,
 //]);
 ?>
+
+<?= LinkPager::widget([
+    'pagination' => $pages,
+]); ?>
 </body>
 </html>
