@@ -2,7 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Категории</title>
+    <?php foreach ($categorys as $category):?>
+        <title><?= $category->title ?></title>
+    <?php endforeach; ?>
+
 </head>
 <body>
 
@@ -35,5 +38,12 @@ use yii\widgets\LinkPager;
         </div>
     <?php endforeach; ?>
 </div>
+
+<?php
+
+//echo LinkPager::widget([
+//    'pagination' => $pagination,
+//]);
+?>
 </body>
 </html>
