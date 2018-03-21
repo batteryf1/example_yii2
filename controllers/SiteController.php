@@ -221,15 +221,12 @@ class SiteController extends Controller
             ->limit($pages->limit)
             ->all();
         return $this->render('categorys', compact('posts', 'pages'));
-
-
-
-
-//        return $this->render('categorys',[
-//            'articles' => $data['articles'],
-//            'pagination' => $data['pagination'],
-//            'categorys' => $categorys
-//        ]);
+    }
+//    Посты
+    public function actionPosts()
+    {
+        $posts = Post::find()->all();
+        return $this->render('posts', compact('posts'));
     }
 
 }

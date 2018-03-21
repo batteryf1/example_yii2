@@ -23,6 +23,13 @@
             <div class="col-lg-4"><?= $article->title ?></div>
             <div class="col-lg-4"><?= $article->content ?></div>
             <div class="col-lg-4"><?= $article->category->title ?></div>
+
+            <div class="row">
+                <div class="col-lg-3"><?= $post->title ?></div>
+                <a class="col-lg-3" href="<?= Url::toRoute(['category', 'id' => $post->id]) ?>">Перейти в категорию</a>
+                <div class="col-lg-3"><?= $post->description ?></div>
+                <div class="col-lg-3"><?= $post->keyword ?></div>
+            </div>
         </div>
 	</div>
 </body>
