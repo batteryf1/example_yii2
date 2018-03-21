@@ -66,6 +66,13 @@ class SiteController extends Controller
     public function actionIndex()
     {
 
+        $url = $_SERVER['REQUEST_URI'];
+        if (preg_match('|index.php|',$url)){
+            header('HTTP/1.1 301 Moved Permanently');
+            header('Location: /');
+            exit();
+        }
+
         $data = Post::getAll(1);
 
         $category = Category::getAll();
