@@ -12,8 +12,6 @@ use yii\widgets\LinkPager;
     <div class="jumbotron">
         <h1>Congratulations!</h1>
 
-        <h3>Все посты. Каждый пост ведет на страницу отдельного поста или на страницу категории, где отображаются все посты из данной категории. Количество постов на этой странице специально 1, чтобы была возможность проверить пагинатор</h3>
-
         <p class="lead">You have successfully created your Yii-powered application.</p>
 
         <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>
