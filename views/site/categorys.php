@@ -1,17 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <?php foreach ($posts as $post):?>
-        <title><?= $post->title ?></title>
-    <?php endforeach; ?>
+<?php
+//I use to create Route
+use yii\helpers\Url;
 
-</head>
-<body>
+//Widget Pagination
+use yii\widgets\LinkPager;
+?>
 
 <?php
-use yii\helpers\Url;
-use yii\widgets\LinkPager;
+
+//Update SEO tags
+
+$this->title = 'Страница категорий';
+
+$this->registerMetaTag(['name' => 'description', 'content' => 'Категории моего сайта']);
+
+$this->registerMetaTag(['name' => 'keyword', 'content' => 'Ключевые слова']);
+
 ?>
 
 <style>
@@ -19,8 +23,6 @@ use yii\widgets\LinkPager;
         border: 1px solid;
     }
 </style>
-
-<div class="container">
 
     <div class="row">
         <div class="col-lg-3">Название</div>
@@ -38,17 +40,6 @@ use yii\widgets\LinkPager;
         </div>
     <?php endforeach; ?>
 
-</div>
-
-<?php
-
-//echo LinkPager::widget([
-//    'pagination' => $pagination,
-//]);
-?>
-
 <?= LinkPager::widget([
     'pagination' => $pages,
 ]); ?>
-</body>
-</html>

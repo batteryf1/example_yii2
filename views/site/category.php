@@ -1,14 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Категория</title>
-</head>
-<body>
-
 <?php
+
+//Update SEO tags
+foreach ($articles as $article){
+    $this->title = $article->title;
+
+    $this->registerMetaTag(['name' => 'description', 'content' => $article->description]);
+
+    $this->registerMetaTag(['name' => 'keyword', 'content' => $article->keyword]);
+}
+//I use to create Route
 use yii\helpers\Url;
-use yii\widgets\LinkPager;
+
 ?>
 
 <style>
@@ -17,9 +19,6 @@ use yii\widgets\LinkPager;
     }
 </style>
 
-<div class="container">
-    <?php ?>
-
     <?php foreach ($articles as $article):?>
     <div class="row">
         <div class="col-lg-4"><?= $article->title ?></div>
@@ -27,6 +26,3 @@ use yii\widgets\LinkPager;
         <a class="col-lg-4" href="<?= Url::toRoute(['site/view', 'id' => $article->id]) ?>">Перейти на пост</a>
     </div>
     <?php endforeach; ?>
-</div>
-</body>
-</html>

@@ -1,10 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Статья</title>
-</head>
-<body>
+<?php
+
+//Update SEO tags
+$this->title = $article->title;
+
+$this->registerMetaTag(['name' => 'description', 'content' => $article->description]);
+
+$this->registerMetaTag(['name' => 'keyword', 'content' => $article->keyword]);
+
+//use yii\helpers\Url;
+
+?>
 
 <style>
     .col-lg-4{
@@ -25,5 +30,3 @@
             <div class="col-lg-4"><?= $article->category->title ?></div>
         </div>
 	</div>
-</body>
-</html>

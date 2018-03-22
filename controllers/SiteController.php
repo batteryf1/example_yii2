@@ -73,15 +73,7 @@ class SiteController extends Controller
             exit();
         }
 
-        $data = Post::getAll(1);
-
-        $category = Category::getAll();
-
-        return $this->render('index',[
-            'articles' => $data['articles'],
-            'pagination' => $data['pagination'],
-            'categories' => $category
-        ]);
+        return $this->render('index');
     }
 
     /**
@@ -148,94 +140,58 @@ class SiteController extends Controller
 
     //Страница одного поста
     public function actionView($id){
+        //Query in DB, find one post
         $posts = Post::findOne($id);
+        //Render on view
         return $this->render('single',[
             'article' => $posts
         ]);
     }
 
-    //Страница категории
+    //Страница одной категории
     public function actionCategory($id){
 
         //build a DB query to get all articles with status = 1
-
         $query = Post::find()->where(['category_id'=>$id]);
-
         //get the total number of articles(but do not fetch the article data yet)
-
         $count = $query->count();
-
         //create a pagination
-
         $pagination = new Pagination(['totalCount' => $count, 'pageSize' => 2]);
-
         //limit the query
-
         $articles = $query->offset($pagination->offset)
             ->limit($pagination->limit)
             ->all();
-
+        //Added in array
         $data['articles'] = $articles;
         $data['pagination'] = $pagination;
-
-
+        //Render on view
        return $this->render('category',[
            'articles' => $data['articles'],
            'pagination' => $data['pagination']
            ]);
     }
 
-    //Страница общих категорий
-//    public function actionCategorys(){
-//
-//        //build a DB query to get all articles with status = 1
-//
-//        $query = Category::find();
-//
-//        //get the total number of articles(but do not fetch the article data yet)
-//
-//        $count = $query->count();
-//
-//        //create a pagination
-//
-//        $pagination = new Pagination(['totalCount' => $count, 'pageSize' => 2]);
-//
-//        //limit the query
-//
-//        $articles = $query->offset($pagination->offset)
-//            ->limit($pagination->limit)
-//            ->all();
-//
-//        $data['articles'] = $articles;
-//        $data['pagination'] = $pagination;
-//
-//        $categorys = Category::find()->All();
-//
-//
-//        return $this->render('categorys',[
-//            'articles' => $data['articles'],
-//            'pagination' => $data['pagination'],
-//            'categorys' => $categorys
-//        ]);
-//    }
-
     //Категории
     public function actionCategorys(){
-
+        //All category in DB
         $query = Category::find();
+        //Object pagination
         $pages = new Pagination(['totalCount' => $query->count(), 'pageSize' => 1]);
+        //Limit query on pagination
         $posts = $query->offset($pages->offset)
             ->limit($pages->limit)
             ->all();
+        //Render on view
         return $this->render('categorys', compact('posts', 'pages'));
     }
-//    Посты
+    //Посты
     public function actionPosts()
     {
+        //All post in DB
         $data = Post::getAll();
-
+        //All category in DB
         $category = Category::getAll();
-
+        // Render on view
         return $this->render('posts',[
             'articles' => $data['articles'],
             'categories' => $category
